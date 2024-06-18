@@ -4,6 +4,7 @@ import HamburgerButton from '@/components/btns/HamburgerButton.vue'
 import UnderlineTextButton from '@/components/btns/UnderlineTextButton.vue'
 import { ref } from 'vue'
 import ListTile from '@/components/lists/ListTile.vue'
+import SubListTile from '@/components/lists/SubListTile.vue'
 
 const isDrawerOpened = ref<boolean>(false)
 
@@ -26,7 +27,22 @@ const clickHamburger = () => {
   </header>
   <div class="drawer-cover">
     <aside :class="isDrawerOpened ? 'min-w-56' : 'min-w-0'">
-      <ListTile to="/" label="首頁" />
+      <ListTile to="/" label="首頁" :expandable="true">
+        <SubListTile label="連結1" />
+        <SubListTile label="連結2" />
+        <SubListTile label="連結3" />
+        <SubListTile label="連結4" />
+      </ListTile>
+      <ListTile to="/" label="關於我們" />
+      <ListTile to="/" label="頁面展示" />
+      <ListTile to="/" label="小型物件" :expandable="true">
+        <SubListTile label="Button(按鈕)" />
+        <SubListTile label="Text(文字)" />
+        <SubListTile label="Card(卡片)" />
+      </ListTile>
+      <ListTile to="/" label="大型物件" :expandable="true">
+        <SubListTile label="Carousel(幻燈片)" />
+      </ListTile>
     </aside>
     <div class="content">
       <slot></slot>
@@ -56,12 +72,13 @@ nav {
 }
 
 .drawer-cover {
-  @apply flex h-full;
+  @apply flex flex-1 overflow-auto;
 
   aside {
     @apply duration-500 ease-in-out;
     @apply w-0 overflow-x-hidden overflow-y-auto;
     @apply bg-surface-light shadow-md shadow-secondary-darkest;
+    @apply break-keep;
 
     &::-webkit-scrollbar {
       @apply w-2 bg-secondary-shad;
