@@ -25,8 +25,8 @@ const clickHamburger = () => {
       <li><UnderlineTextButton label="NavBtn2" /></li>
     </nav>
   </header>
-  <div class="drawer-cover">
-    <aside :class="isDrawerOpened ? 'min-w-56' : 'min-w-0'">
+  <div class="main-area">
+    <aside :class="isDrawerOpened ? 'min-w-full md:min-w-56' : 'min-w-0'">
       <ListTile to="/" label="首頁" :expandable="true">
         <SubListTile label="連結1" />
         <SubListTile label="連結2" />
@@ -51,32 +51,38 @@ const clickHamburger = () => {
 </template>
 <style scoped lang="scss">
 header {
-  @apply flex justify-between items-center;
+  @apply flex justify-end items-center;
+  @apply md:justify-between;
   @apply py-2 px-4;
   @apply bg-primary-shad;
 }
 
 .leading {
-  @apply flex gap-8 items-center;
+  @apply flex flex-row-reverse gap-8 items-center;
+  @apply md:flex-row;
 }
 
 .logo {
-  @apply text-2xl font-bold tracking-wider bg-clip-text;
+  @apply font-bold tracking-wider bg-clip-text;
+  font-size: clamp(0.75rem, 3vw, 1.5rem);
+  line-height: clamp(24px, 3vw, 32px);
   background: linear-gradient(90deg, #c0541a, var(--color-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 nav {
-  @apply flex gap-12;
+  @apply hidden gap-12;
+  @apply md:flex;
 }
 
-.drawer-cover {
-  @apply flex flex-1 overflow-auto;
+.main-area {
+  @apply flex flex-row-reverse flex-1 overflow-y-auto overflow-x-hidden;
+  @apply md:flex-row;
 
   aside {
     @apply duration-500 ease-in-out;
-    @apply w-0 overflow-x-hidden overflow-y-auto;
+    @apply w-0 overflow-x-hidden overflow-y-auto z-10;
     @apply bg-surface-light shadow-md shadow-secondary-darkest;
     @apply break-keep;
 
@@ -89,7 +95,7 @@ nav {
   }
 
   .content {
-    @apply flex-1;
+    @apply flex-1 min-w-[50%];
   }
 }
 </style>
