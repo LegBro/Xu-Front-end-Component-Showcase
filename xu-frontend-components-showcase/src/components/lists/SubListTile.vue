@@ -23,7 +23,7 @@ const emits = defineEmits<{ (event: 'click'): void }>()
 <style scoped lang="scss">
 a,
 button {
-  @apply pl-10 py-2 w-full text-start;
+  @apply pl-10 py-2 w-full text-start flex;
   @apply tracking-wide;
   @apply bg-surface hover:bg-surface-dark duration-500;
 }

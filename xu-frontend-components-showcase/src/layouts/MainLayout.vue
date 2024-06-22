@@ -5,6 +5,7 @@ import UnderlineTextButton from '@/components/btns/UnderlineTextButton.vue'
 import { ref } from 'vue'
 import ListTile from '@/components/lists/ListTile.vue'
 import SubListTile from '@/components/lists/SubListTile.vue'
+import { RouteInfos } from '@/router'
 
 const isDrawerOpened = ref<boolean>(false)
 
@@ -18,7 +19,7 @@ const clickHamburger = () => {
       <KeepAlive>
         <HamburgerButton @click="clickHamburger" />
       </KeepAlive>
-      <RouterLink to="/" class="logo"> Xu Componontes </RouterLink>
+      <RouterLink class="logo" :to="RouteInfos.HOMEVIEW"> Xu Componontes </RouterLink>
     </div>
     <nav>
       <li><UnderlineTextButton label="NavBtn1" /></li>
@@ -27,20 +28,20 @@ const clickHamburger = () => {
   </header>
   <div class="main-area">
     <aside :class="isDrawerOpened ? 'min-w-full md:min-w-56' : 'min-w-0'">
-      <ListTile to="/" label="首頁" :expandable="true">
-        <SubListTile label="連結1" />
+      <ListTile label="首頁" :to="RouteInfos.HOMEVIEW"></ListTile>
+      <ListTile label="關於我們" :expandable="true"
+        ><SubListTile label="連結1" />
         <SubListTile label="連結2" />
         <SubListTile label="連結3" />
-        <SubListTile label="連結4" />
-      </ListTile>
-      <ListTile to="/" label="關於我們" />
-      <ListTile to="/" label="頁面展示" />
-      <ListTile to="/" label="小型物件" :expandable="true">
-        <SubListTile label="Button(按鈕)" />
+        <SubListTile label="連結4"
+      /></ListTile>
+      <ListTile label="頁面展示" />
+      <ListTile label="小型物件" :expandable="true">
+        <SubListTile label="Button(按鈕)" :to="RouteInfos.BUTTONSVIEW" />
         <SubListTile label="Text(文字)" />
         <SubListTile label="Card(卡片)" />
       </ListTile>
-      <ListTile to="/" label="大型物件" :expandable="true">
+      <ListTile label="大型物件" :expandable="true">
         <SubListTile label="Carousel(幻燈片)" />
       </ListTile>
     </aside>
